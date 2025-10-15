@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextButton = document.querySelector('.carousel-button.next');
     let currentIndex = 0;
 
+    // Get the base URL for GitHub Pages
+    const baseUrl = '/Atreya';
+
     // Directly specify images (you can modify this array with your image names)
     const images = [
         '1.PNG',
@@ -15,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupCarousel() {
         images.forEach(imagePath => {
             const img = document.createElement('img');
-            img.src = `images/${imagePath}`; // Updated path
+            // Use the correct path for GitHub Pages
+            img.src = `${baseUrl}/images/${imagePath}`;
             img.alt = 'Carousel Image';
             img.onerror = function() {
                 console.log(`Failed to load image: ${this.src}`);
