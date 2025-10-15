@@ -1,0 +1,1 @@
+Place your images (1.PNG and 2.PNG) in this folder.
