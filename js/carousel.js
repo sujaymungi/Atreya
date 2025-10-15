@@ -4,25 +4,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextButton = document.querySelector('.carousel-button.next');
     let currentIndex = 0;
 
-    // Get the base URL for GitHub Pages
-    const baseUrl = '/Atreya';
+    // Get the base path depending on the environment
+    const getBasePath = () => {
+        // Check if we're on GitHub Pages
+        if (window.location.hostname === 'sujaymungi.github.io') {
+            return '/Atreya';
+        }
+        return '';
+    };
 
-    // Directly specify images (you can modify this array with your image names)
+    const basePath = getBasePath();
+    
+    // Use relative paths that work both locally and on GitHub Pages
     const images = [
-        '1.PNG',
-        '2.PNG'
+        `${basePath}/images/1.PNG`,
+        `${basePath}/images/2.PNG`
     ];
-    console.log('images', images);
+    console.log('Loading images:', images);
     
     // Create image elements
     function setupCarousel() {
         images.forEach(imagePath => {
             const img = document.createElement('img');
-            // Use the correct path for GitHub Pages
-            img.src = `${baseUrl}/images/${imagePath}`;
+            img.src = imagePath;
             img.alt = 'Carousel Image';
             img.onerror = function() {
-                console.log(`Failed to load image: ${this.src}`);
+                console.error(`Failed to load image: ${this.src}`);
             };
             carouselContainer.appendChild(img);
         });
