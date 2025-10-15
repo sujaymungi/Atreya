@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupCarousel() {
         images.forEach(imagePath => {
             const img = document.createElement('img');
-            img.src = `./images/${imagePath}`; // Updated to use relative path
+            img.src = `images/${imagePath}`; // Updated path
             img.alt = 'Carousel Image';
             img.onerror = function() {
                 console.log(`Failed to load image: ${this.src}`);
