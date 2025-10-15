@@ -38,8 +38,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="images\1.PNG" />
-    <Content Include="images\2.PNG" />
     <Content Include="wwwroot\images\1.PNG" />
     <Content Include="wwwroot\images\2.PNG" />
     <Content Include="wwwroot\css\styles.css" />
