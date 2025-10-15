@@ -6,30 +6,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Get the base path depending on the environment
     const getBasePath = () => {
-        // Check if we're on GitHub Pages
-        if (window.location.hostname === 'sujaymungi.github.io') {
-            return '/Atreya/Atreya';  // Updated to include double Atreya in path
+        const isGitHubPages = window.location.hostname === 'sujaymungi.github.io';
+        console.log('Is GitHub Pages:', isGitHubPages);
+        console.log('Current hostname:', window.location.hostname);
+        
+        if (isGitHubPages) {
+            // This will create the path /Atreya/Atreya/images/...
+            return '/Atreya/Atreya';
         }
         return '';
     };
 
     const basePath = getBasePath();
+    console.log('Base path:', basePath);
     
-    // Use relative paths that work both locally and on GitHub Pages
+    // Use the correct path structure
     const images = [
         `${basePath}/images/1.PNG`,
         `${basePath}/images/2.PNG`
     ];
-    console.log('Loading images:', images);
+    console.log('Image paths:', images);
     
     // Create image elements
     function setupCarousel() {
-        images.forEach(imagePath => {
+        images.forEach((imagePath, index) => {
             const img = document.createElement('img');
-            img.src = imagePath;
-            img.alt = 'Carousel Image';
+            // Force path to match the working URL structure
+            img.src = window.location.hostname === 'sujaymungi.github.io' 
+                ? `/Atreya/Atreya/images/${index + 1}.PNG`  // Use absolute path for GitHub Pages
+                : imagePath;  // Use relative path for local development
+            
+            console.log(`Loading image ${index + 1}:`, img.src);
+            
+            img.alt = `Carousel Image ${index + 1}`;
             img.onerror = function() {
                 console.error(`Failed to load image: ${this.src}`);
+                // Attempt to reload with alternate path if on GitHub Pages
+                if (window.location.hostname === 'sujaymungi.github.io' && !this.src.includes('/Atreya/Atreya/')) {
+                    console.log('Attempting alternate path...');
+                    this.src = `/Atreya/Atreya/images/${index + 1}.PNG`;
+                }
             };
             carouselContainer.appendChild(img);
         });
