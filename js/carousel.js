@@ -6,33 +6,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Get the base path depending on the environment
     const getBasePath = () => {
-        const isGitHubPages = window.location.hostname === 'sujaymungi.github.io';
-        console.log('Is GitHub Pages:', isGitHubPages);
-        console.log('Current hostname:', window.location.hostname);
-        
-        if (isGitHubPages) {
-            return '/Atreya/Atreya/wwwroot';  // Updated to match the actual file structure
-        }
-        return '';
+        return window.location.hostname === 'sujaymungi.github.io' ? '/Atreya' : '';
     };
 
     const basePath = getBasePath();
-    console.log('Base path:', basePath);
     
-    // Use the correct path structure
+    // Use the simplified path structure
     const images = [
         `${basePath}/images/1.PNG`,
         `${basePath}/images/2.PNG`
     ];
-    console.log('Image paths:', images);
     
     // Create image elements
     function setupCarousel() {
         images.forEach((imagePath, index) => {
             const img = document.createElement('img');
             img.src = imagePath;
-            console.log(`Loading image ${index + 1}:`, img.src);
-            
             img.alt = `Carousel Image ${index + 1}`;
             img.onerror = function() {
                 console.error(`Failed to load image: ${this.src}`);
