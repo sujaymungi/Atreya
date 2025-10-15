@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const getBasePath = () => {
         // Check if we're on GitHub Pages
         if (window.location.hostname === 'sujaymungi.github.io') {
-            return '/Atreya';
+            return '/Atreya/Atreya';  // Updated to include double Atreya in path
         }
         return '';
     };
